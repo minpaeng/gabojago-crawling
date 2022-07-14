@@ -20,7 +20,6 @@ df.columns = ['name',  # 상호명
               'dong',  # 법정동명
               ]
 
-
 # print(df.iloc[1])
 
 dong_list = list(df['dong'])
@@ -105,21 +104,20 @@ for k in keyword:
         except:
             print("카테고리 가져오기 실패")
 
-        # ----평점 가져오기----
+        # -----별점 및 리뷰 수 가져오기-----
+        idx = 0
         try:
-            store_rating_list = driver.find_element_by_css_selector('._1A8_M').text
-            st = re.sub('별점', '', store_rating_list).replace('\n', '')  # 별점이라는 단어 제거
+            cnt_list = driver.find_elements_by_css_selector('span._1Y6hi')
+            # print(len(cnt_list))
+            st = cnt_list[0].find_element_by_tag_name('em').text
+            idx += 1
+            vi = cnt_list[1].find_element_by_tag_name('em').text
+            idx += 1
+            bl = cnt_list[2].find_element_by_tag_name('em').text
+            idx += 1
         except:
-            print("별점 가져오기 실패")
-        print("별점: " + st)
-
-        # -----리뷰 수 가져오기-----
-        try:
-            cnt_list = driver.find_elements_by_css_selector('._20Ivz')
-            for i in cnt_list:
-                print("리뷰 수: " + i.find_element_by_css_selector('._1Y6hi > em').text)
-        except:
-            print("리뷰 수를 가져오기 실패")
+            print(f"idx:{idx} 리뷰 수 가져오기 실패")
+            print(f'별점: {ca}\n방문자 리뷰 수: {vi}\n블로그 리뷰 수: {bl}')
 
     except:
         print("가게명 " + k + " 에 대한 리스트 결과 없음.")
@@ -142,8 +140,21 @@ for k in keyword:
                 pass
             print("별점: " + st)
 
+            # -----별점 및 리뷰 수 가져오기-----
+            try:
+                cnt_list = driver.find_elements_by_css_selector('span._1Y6hi')
+                # print(len(cnt_list))
+                ca = cnt_list[0].find_element_by_tag_name('em').text
+                vi = cnt_list[1].find_element_by_tag_name('em').text
+                bl = cnt_list[2].find_element_by_tag_name('em').text
+            except:
+                print("리뷰 수 가져오기 실패")
+            print(f'별점: {ca}\n방문자 리뷰 수: {vi}\n블로그 리뷰 수: {bl}')
+
         except:
             print("Error: 가게명 " + k + " 에 대한 결과가 존재하지 않음.")
 
     driver.switch_to.default_content()
     search.clear()
+
+driver.close()
