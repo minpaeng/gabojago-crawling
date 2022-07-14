@@ -22,6 +22,9 @@ sleep(1)
 
 search = driver.find_element_by_css_selector('input.input_search')
 
+real_name = []
+address = []
+tel = []
 category = []
 star = []
 visit_review = []
@@ -30,8 +33,21 @@ blog_review = []
 # 검색창 입력
 count = 1
 for k in keyword:
+    # 반복마다 변수 초기화
+    real_na = "None"
+    ad = "None"
+    te = "None"
+    ca = "None"
+    st = "None"
+    vi = "None"
+    bl = "None"
+    de = "None"
+
+    # 진행률
     print(f'{count}/{total} 진행중: {k}')
     count += 1
+
+    # 쿼리 보내기
     search.click()
     search.send_keys(k)
     time.sleep(1)
@@ -41,14 +57,12 @@ for k in keyword:
 
     # case 1: 리스트 결과일 때
     try:
-        # iframe 안으로 들어가기
+        # searchIframe으로 이동
         driver.switch_to.frame('searchIframe')
 
-        # iframe 안쪽을 한번 클릭하기
-        driver.find_element_by_css_selector('#_pcmap_list_scroll_container').click()
-
-        page = driver.find_elements_by_css_selector('.OXiLu')
-        page[0].click()
+        items = driver.find_elements_by_css_selector('.OXiLu')
+        print(f'항목 길이: {len(items)}')
+        items[0].click()
         sleep(1)
         switch_frame('entryIframe')
 
