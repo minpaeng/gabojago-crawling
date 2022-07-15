@@ -1,15 +1,45 @@
 from time import sleep
 
 
+# ----가게 이름 가져오기----
+def get_store_name(driver):
+    na = "None"
+    try:
+        na = driver.find_element_by_css_selector('span._3XamX').text
+    except:
+        print('Error: 가게 이름 가져오기 실패.')
+    return na
+
+
 # ----카테고리 가져오기----
 def get_category(driver):
     ca = "None"
     try:
         ca = driver.find_element_by_css_selector('span._3ocDE').text
-        sleep(1)
+        # sleep(1)
     except:
-        print("카테고리 가져오기 실패")
+        print("카테고리 없음.")
     return ca
+
+
+# ----주소 가져오기----
+def get_address(driver):
+    ad = "None"
+    try:
+        ad = driver.find_element_by_css_selector('._2yqUQ').text
+    except:
+        print('Error: 주소 가져오기 실패.')
+    return ad
+
+
+# ----전화번호 가져오기----
+def get_tel(driver):
+    te = "None"
+    try:
+        te = driver.find_element_by_css_selector('span._3ZA0S').text
+    except:
+        print('전화번호 없음.')
+    return te
 
 
 # ----설명 가져오기----
@@ -20,7 +50,7 @@ def get_detail(driver):
         button = driver.find_element_by_css_selector('._3__3i')
         button.find_element_by_css_selector('.M_704').click()
         de = button.find_element_by_css_selector('span.WoYOw').text
-        sleep(1)
+        # sleep(1)
     except:
         print('설명 없음.')
     return de
