@@ -31,6 +31,7 @@ def start_crawling(name):
     print(f'가게명 {k}에 상세조회 성공.')
 
 
+# 파일명을 변경하여 사용
 df, keyword, total = dataframe('Daejeon')
 
 driver = webdriver.Chrome()
@@ -111,5 +112,5 @@ df2 = pd.DataFrame({'store_name': store_name, 'address': address, 'tel': tel,
 df2.to_csv("Daejeon_new_result.csv")
 
 df = df.assign(store_name=store_name, tel=tel, category=category, star=star,
-          detail=detail, visit_review=visit_review, blog_review=blog_review)
+               detail=detail, visit_review=visit_review, blog_review=blog_review)
 df.to_csv("Daejeon_result.csv")
