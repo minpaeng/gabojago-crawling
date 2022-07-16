@@ -1,6 +1,6 @@
 # Gabojago-Crawling
 selenium 3.14.1 버전 사용
-***
+
 ## 1. MJ
 
 - 사용 데이터: 공공데이터포털 - <a hfef=https://www.data.go.kr/data/15083033/fileData.do>소상공인시장진흥공단_상가(상권)정보</a>
@@ -20,6 +20,6 @@ selenium 3.14.1 버전 사용
 
 <br/>
 
-***
+
 ## 2. HM
 
