@@ -30,7 +30,7 @@ local2 = ["경기 맛집", "경남 맛집", "경북 맛집", "광주 맛집", "�
           "대전 맛집", "부산 맛집", "서울 맛집", "세종 맛집", "울산 맛집",
           "인천 맛집", "전남 맛집", "전북 맛집", "제주 맛집", "충남 맛집", "충북 맛집"]
 """
-local2 = ["경북 맛집", "광주 맛집", "대구 맛집",
+local2 = ["광주 맛집", "대구 맛집",
           "대전 맛집", "부산 맛집", "서울 맛집", "세종 맛집", "울산 맛집",
           "인천 맛집", "전남 맛집", "전북 맛집", "제주 맛집", "충남 맛집", "충북 맛집"]
 
@@ -155,33 +155,7 @@ for lo in local2:
                 except:
                     blog_review = "0"
 
-        """
-        time.sleep(2)
-        # 영업 시간이 있다면
-        if len(li.find_elements_by_css_selector("span._2FqTn._4DbfT")) > 0:
-            # 방문자 리뷰수
-            try:
-                visit_review = li.find_element_by_css_selector("span._2FqTn:nth-child(3)").text
-            except:
-                visit_review = "0"
-            # 블로그 리뷰수
-            try:
-                blog_review = li.find_element_by_css_selector("span._2FqTn:nth-child(4)").text
-            except:
-                blog_review = "0"
-        # 영업 시간이 없다면
-        else:
-            # 방문자 리뷰수
-            try:
-                visit_review = li.find_element_by_css_selector("span._2FqTn:nth-child(2)").text
-            except:
-                visit_review = "0"
-            # 블로그 리뷰수
-            try:
-                blog_review = li.find_element_by_css_selector("span._2FqTn:nth-child(3)").text
-            except:
-                blog_review = "0"
-        """
+
         try:
             # 상세 페이지로 이동
             page[index].click()
@@ -208,7 +182,7 @@ for lo in local2:
                 detail = "None"
             try:
                 detail = driver.find_element_by_css_selector('span.WoYOw').text
-                detail = detail.replace("\n", "")
+                detail = detail.replace("\n", " ")
                 sleep(1)
             except:
                 #print("설명 가져오기 실패")
