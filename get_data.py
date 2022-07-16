@@ -89,3 +89,19 @@ def get_star_and_review_cnt(driver):
     except:
         print('리뷰 수 가져오기 실패')
     return st, vi, bl
+
+
+def get_required_data(driver):
+    # ----가게 이름 가져오기----
+    na = get_store_name(driver)
+    # ----주소 가져오기----
+    ad = get_address(driver)
+    # ----카테고리 가져오기----
+    ca = get_category(driver)
+    # -----별점 및 리뷰 수 가져오기-----
+    st, vi, bl = get_star_and_review_cnt(driver)
+    # ----전화번호 가져오기----
+    te = get_tel(driver)
+    # ----설명 가져오기----
+    de = get_detail(driver)
+    return na, ad, ca, st, vi, bl, te, de
