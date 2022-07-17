@@ -98,7 +98,7 @@ def get_img(driver):
     try:
         data = driver.find_elements_by_css_selector('.cb7hz')
         im = str(data[0].get_attribute('style'))
-        regex = re.compile('{}(.*){}'.format(re.escape('"'), re.escape('"')))
+        regex = re.compile('{}(https.*){}'.format(re.escape('"'), re.escape('"')))
         im = regex.findall(im)
     except:
         print('이미지 가져오기 실패')

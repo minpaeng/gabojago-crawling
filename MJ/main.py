@@ -2,8 +2,8 @@ import pandas as pd
 from get_dataframe import dataframe
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from get_data import *
-import time
+from get_data import get_required_data
+from time import sleep
 
 
 # frame 변경 메소드
@@ -32,7 +32,7 @@ def start_crawling(name):
 
 
 # 파일명을 변경하여 사용
-df, keyword, total = dataframe('Daejeon')
+df, keyword, total = dataframe('Daegu')
 
 driver = webdriver.Chrome()
 driver.get('https://map.naver.com/v5/search')
@@ -74,9 +74,9 @@ for k in keyword:
     # 쿼리 보내기
     search.click()
     search.send_keys(k)
-    time.sleep(1)
+    sleep(1)
     search.send_keys(Keys.ENTER)
-    time.sleep(1)
+    sleep(1)
     driver.implicitly_wait(0)
 
     try:
