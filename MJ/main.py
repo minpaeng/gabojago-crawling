@@ -51,6 +51,7 @@ star = []
 visit_review = []
 blog_review = []
 detail = []
+image = []
 
 # 검색창 입력
 count = 1
@@ -104,17 +105,24 @@ for k in keyword:
     visit_review.append(vi)
     blog_review.append(bl)
     detail.append(de)
+    image.append(im)
 
     driver.switch_to.default_content()
     search.clear()
+
+    # 데이터셋 일부만 크롤링(3000개). 필요에 따라 수정하여 사용
+    # if count == 3000:
+    #     break
 
 driver.close()
 
 df2 = pd.DataFrame({'store_name': store_name, 'address': address, 'tel': tel,
                     'category': category, 'star': star, 'detail': detail,
-                    'visit_review': visit_review, 'blog_review': blog_review})
+                    'visit_review': visit_review, 'blog_review': blog_review, 'image': image})
 df2.to_csv("Daejeon_new_result.csv")
 
-df = df.assign(store_name=store_name, tel=tel, category=category, star=star,
-               detail=detail, visit_review=visit_review, blog_review=blog_review)
-df.to_csv("Daejeon_result.csv")
+# 데이터셋 일부만 크롤링 할 시 주석처리하기. 전체를 크롤링 한다면 주석 해제해주세요
+# df = df.assign(store_name=store_name, address=address, tel=tel,
+#                category=category, star=star, detail=detail,
+#                visit_review=visit_review, blog_review=blog_review, image=image)
+# df.to_csv("Daejeon_result.csv")
