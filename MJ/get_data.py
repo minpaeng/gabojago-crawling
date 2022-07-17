@@ -1,4 +1,5 @@
 from time import sleep
+import re
 
 
 # ----가게 이름 가져오기----
@@ -91,6 +92,19 @@ def get_star_and_review_cnt(driver):
     return st, vi, bl
 
 
+# ----이미지 가져오기----
+def get_img(driver):
+    im = "None"
+    try:
+        data = driver.find_elements_by_css_selector('.cb7hz')
+        im = str(data[0].get_attribute('style'))
+        regex = re.compile('{}(.*){}'.format(re.escape('"'), re.escape('"')))
+        im = regex.findall(im)
+    except:
+        print('이미지 가져오기 실패')
+    return im[0]
+
+
 def get_required_data(driver):
     # ----가게 이름 가져오기----
     na = get_store_name(driver)
@@ -104,4 +118,7 @@ def get_required_data(driver):
     te = get_tel(driver)
     # ----설명 가져오기----
     de = get_detail(driver)
-    return na, ad, ca, st, vi, bl, te, de
+    # ----이미지 가져오기----
+    im = get_img(driver)
+
+    return na, ad, ca, st, vi, bl, te, de, im

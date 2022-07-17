@@ -64,6 +64,7 @@ for k in keyword:
     vi = "None"
     bl = "None"
     de = "None"
+    im = "None"
 
     # 진행률
     print(f'{count}/{total} 진행중: {k}')
@@ -79,18 +80,21 @@ for k in keyword:
 
     try:
         start_crawling('.OXiLu')
-        na, ad, ca, st, vi, bl, te, de = get_required_data(driver)
+        na, ad, ca, st, vi, bl, te, de, im = get_required_data(driver)
+
     # case 3: 결과가 없을 떼
     except:
         try:
             start_crawling('._3Apve')
-            na, ad, ca, st, vi, bl, te, de = get_required_data(driver)
+            na, ad, ca, st, vi, bl, te, de, im = get_required_data(driver)
+
         except:
             print(f'Error: 가게명 {k}에 대한 결과가 존재하지 않음.')
 
     print(f'- 가게 이름: {na}    - 전화번호: {te}    - 카테고리: {ca}')
     print(f'- 주소: {ad}    - 별점: {st}    - 주문자 리뷰 수: {vi}    - 블로그 리뷰 수: {bl}')
     print(f'설명: {de}')
+    print(f'이미지: {im}')
     print('-' * 80)
     store_name.append(na)
     address.append(ad)
