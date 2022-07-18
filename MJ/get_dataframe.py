@@ -21,7 +21,7 @@ def dataframe(file_name):
 
     keyword = []
     for i in range(len(name_list)):
-        keyword.append(dong_list[i] + ' ' + name_list[i])
+        keyword.append(str(dong_list[i]) + ' ' + str(name_list[i]))
 
     # print(dong_list[:10])
 
