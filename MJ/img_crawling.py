@@ -5,22 +5,6 @@ from get_data import get_img
 from time import sleep
 
 
-def to_int(n):
-    if n == 'None':
-        return 0
-    res = n.replace(',', '')
-    res = int(res)
-    return res
-
-
-def to_float(n):
-    if n == 'None':
-        return 0
-    res = n.replace(',', '')
-    res = float(res)
-    return res
-
-
 # frame 변경 메소드
 def switch_frame(frame):
     driver.switch_to.default_content()  # frame 초기화
@@ -46,12 +30,13 @@ def start_crawling(name):
     print(f'가게명 {k}에 상세조회 성공.')
 
 
-df = pd.read_csv('dataset/Seoul/Seoul_cleaned.csv', index_col=0)
+# 이름 알맞게 변경
+df = pd.read_csv('dataset/Busan/Busan_cleaned.csv', index_col=0)
 
 keyword = []
 store_list = list(df['store_name'])
 for i in range(len(store_list)):
-    keyword.append('서울' + str(store_list[i]))
+    keyword.append('부산 ' + str(store_list[i]))
 
 driver = webdriver.Chrome()
 driver.get('https://map.naver.com/v5/search')
@@ -65,6 +50,7 @@ search = driver.find_element_by_css_selector('input.input_search')
 count = 1
 image = []
 for k in keyword:
+    im = 'None'
     # 진행률
     print(f'{count}/300 진행중: {k}')
     count += 1
@@ -99,4 +85,5 @@ for k in keyword:
 driver.close()
 
 df = df.assign(image=image)
-df.to_csv('dataset/cleaning/Seoul.csv')
+# 이름 알맞게 변경
+df.to_csv('dataset/cleaning/Busan_cleaned.csv')
