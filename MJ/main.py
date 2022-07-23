@@ -1,8 +1,8 @@
 import pandas as pd
-from get_dataframe import dataframe
+from MJ.util.get_dataframe import dataframe
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from get_data import get_required_data
+from MJ.util.get_data import get_required_data
 from time import sleep
 
 

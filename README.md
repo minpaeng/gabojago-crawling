@@ -18,7 +18,10 @@ selenium 3.14.1 버전 사용
 - main.py의 112, 116번째 줄: 크롤링된 상가 정보가 저장될 파일명을 설정
 - main.py 실행
 
+<br/>
 📌데이터 csv파일의 한글이 깨지면 인코딩 변경하기!
+
+📌MJ/util/db_connection.py 파일에 db connection 코드를 작성하여 사용
 
 <br/>
 

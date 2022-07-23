@@ -8,4 +8,5 @@
 /MJ/dataset/Ulsan
 /MJ/dataset/Incheon
 MJ/chromedriver.exe
+MJ/util/db_connection.py
 HM/dataset/db_connection.py
