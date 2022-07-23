@@ -30,3 +30,26 @@ def dataframe(file_name):
     total = df.shape[0] - 1
 
     return df, keyword, total
+
+
+def get_spot_dataframe(file_name):
+    df = pd.read_csv(f'dataset/cleaning/{file_name}.csv', sep=',')
+    df = df[['store_name', 'address', 'detail', 'tel', 'image']]
+    df = df.where((pd.notnull(df)), None)
+    df.columns = ['spot_name',  # 장소명: 0
+                  'address',  # 주소: 1
+                  'detail',  # 상세내용: 2
+                  'tel',  # 전화번호: 3
+                  'spot_image'  # 가게사진: 4
+                  ]
+    return df
+
+
+def get_spot_tag_dataframe(file_name):
+    df = pd.read_csv(f'dataset/cleaning/{file_name}.csv', sep=',')
+    df = df[['store_name', 'address', 'tag']]
+    df.columns = ['spot_name',  # 장소명: 0
+                  'address',    # 주소: 1
+                  'tag'         # 태그: 2
+                  ]
+    return df
