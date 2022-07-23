@@ -33,8 +33,6 @@ def dataframe(file_name):
 
 
 def get_spot_dataframe(file_name):
-    # 정제된 데이터 읽어오기
-    # 지역 반드시!!! 설정 후 코드 실행하기
     df = pd.read_csv(f'dataset/cleaning/{file_name}.csv', sep=',')
     df = df[['store_name', 'address', 'detail', 'tel', 'image']]
     df = df.where((pd.notnull(df)), None)
@@ -48,8 +46,10 @@ def get_spot_dataframe(file_name):
 
 
 def get_spot_tag_dataframe(file_name):
-    # 정제된 데이터 읽어오기
-    # 지역 반드시!!! 설정 후 코드 실행하기
     df = pd.read_csv(f'dataset/cleaning/{file_name}.csv', sep=',')
-    df = df[['store_name', 'address', 'detail', 'tel', 'image']]
+    df = df[['store_name', 'address', 'tag']]
+    df.columns = ['spot_name',  # 장소명: 0
+                  'address',    # 주소: 1
+                  'tag'         # 태그: 2
+                  ]
     return df
