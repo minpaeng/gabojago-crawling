@@ -128,5 +128,5 @@ for idx in range(len(df2)):
 #print(spot_id)
 #print(result)
 
-db.commit()
+#db.commit()
 db.close()
