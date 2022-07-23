@@ -1,5 +1,5 @@
-from get_dataframe import get_spot_dataframe
-from db_connection import get_db_connection
+from MJ.util.get_dataframe import get_spot_dataframe
+from MJ.util.db_connection import get_db_connection
 
 # db 커넥션 가져오기
 db, cursor = get_db_connection()

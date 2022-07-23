@@ -1,7 +1,7 @@
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from get_data import get_img
+from MJ.util.get_data import get_img
 from time import sleep
 
 

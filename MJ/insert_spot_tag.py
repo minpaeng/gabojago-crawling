@@ -1,5 +1,5 @@
-from get_dataframe import get_spot_tag_dataframe
-from db_connection import get_db_connection
+from MJ.util.get_dataframe import get_spot_tag_dataframe
+from MJ.util.db_connection import get_db_connection
 
 tag_dict = {
     '야경': 1,
@@ -46,5 +46,5 @@ for idx in range(len(df)):
         cursor.execute(insert_spot_tag, val2)
     print('-'*80)
 
-db.commit()
+# db.commit()
 db.close()
