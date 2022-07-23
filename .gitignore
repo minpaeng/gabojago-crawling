@@ -1,3 +1,10 @@
 /MJ/spot
-/MJ/dataset
+/MJ/dataset/Seoul
+/MJ/dataset/Busan
+/MJ/dataset/Daegu
+/MJ/dataset/Daejeon
+/MJ/dataset/Gwangju
+/MJ/dataset/Jeju
+/MJ/dataset/Ulsan
+/MJ/dataset/Incheon
 MJ/chromedriver.exe
