@@ -36,26 +36,24 @@ def get_location(loc):
 
 
 get_count_spot = 'SELECT count(spot_id) FROM spot'
-# spot_x, spot_y 속성을 추가하기 위한 쿼리문 # string 속성 타입으로 변경해야함 # alter은 자동 커밋됨
-alter_spot_x = 'ALTER TABLE spot ADD COLUMN spot_x int'
-alter_spot_y = 'ALTER TABLE spot ADD COLUMN spot_y int'
+# spot_x, spot_y 속성을 추가하기 위한 쿼리문 # alter은 자동 커밋됨
+alter_spot_x = 'ALTER TABLE spot ADD COLUMN spot_x float'
+alter_spot_y = 'ALTER TABLE spot ADD COLUMN spot_y float'
 # 주소를 조회하기 위한 쿼리문
-get_spot_id = 'SELECT address FROM spot WHERE spot_id=%s'
+get_spot_id = 'SELECT spot_id, address FROM spot WHERE spot_id=%s'
 # spot에 데이터 삽입을 위한 쿼리문
 insert_spot_xy = 'INSERT INTO spot(spot_x, spot_y) VALUES(%s, %s)'
-
-start = get_location('서울 중구 세종대로 124')
-print(type(start[0]))
+# 속성 타입을 바꾸기 위한 쿼리문
+float_spot_x = 'ALTER TABLE spot MODIFY spot_x float DEFAULT null'
+float_spot_y = 'ALTER TABLE spot MODIFY spot_y float DEFAULT null'
 
 
 db, cursor = get_db_connection()
-
 #cursor.execute(alter_spot_x)
 #cursor.execute(alter_spot_y)
 #cursor.execute('SELECT * FROM spot WHERE spot_id=1')
 #result = cursor.fetchall()
 #print(result)
-
 
 cursor.execute(get_count_spot)
 db_count = cursor.fetchall()
@@ -65,21 +63,16 @@ for idx in range(1, db_count[0][0]+1):
     val1 = (idx,)
     cursor.execute(get_spot_id, tuple(val1))
     result = cursor.fetchall()
-    spot_address = result[0][0]
-    print(f'spot_address: {spot_address}')
+    spot_id = result[0][0]
+    spot_address = result[0][1]
+    print(f'spot_address: {spot_address}, spot_id: {spot_id}')
 
     #  함수 적용
-    start = get_location(spot_address)
-    print(f'start: {start}')
+    spot_xy = get_location(spot_address)
+    print(f'start: {spot_xy}')
+    #cursor.execute(insert_spot_xy, spot_xy)
 
-    cursor.execute(insert_spot_xy, start)
-
-
-cursor.execute('SELECT * FROM spot WHERE spot_id=1')
-result = cursor.fetchall()
-print(result)
-
-# db.commit()
+#db.commit()
 db.close()
 
 
